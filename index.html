@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+		<meta charset="utf-8">
+		<title>Binary Clock Demo</title>
+		<meta name="generator" content="Bootply" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+		<link href="css/bootstrap.min.css" rel="stylesheet">
+		<!--[if lt IE 9]>
+			<script src="//html5shim.googlecode.com/svn/trunk/html5.js"></script>
+		<![endif]-->
+		<link href="css/styles.css" rel="stylesheet">
+	</head>
+	<body>
+<!-- Wrap all page content here -->
+<div id="wrap">
+  
+  <!-- Fixed navbar -->
+  <div class="navbar navbar-default navbar-fixed-top">
+    <div class="container">
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="#">Styled Clocks</a>
+      </div>
+      <!-- <div class="collapse navbar-collapse">
+        <ul class="nav navbar-nav">
+          <li class="active"><a href="#">Home</a></li>
+          <li><a href="#about">About</a></li>
+          <li><a href="#contact">Contact</a></li>
+          <li class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown">Dropdown <b class="caret"></b></a>
+            <ul class="dropdown-menu">
+              <li><a href="#">Action</a></li>
+              <li><a href="#">Another action</a></li>
+              <li><a href="#">Something else here</a></li>
+              <li class="divider"></li>
+              <li class="dropdown-header">Nav header</li>
+              <li><a href="#">Separated link</a></li>
+              <li><a href="#">One more separated link</a></li>
+            </ul>
+          </li>
+        </ul>
+      </div>-->
+    </div>
+  </div>
+  
+  <!-- Begin page content -->
+  <div class="center-container">
+    <div class="center-row">
+      <div class="col-xs-6 bg-one text-center" id="clock-one"><h2><div id="clock-one-title">Regular Clock</div></h2>
+      <div class="sub-header">
+
+          <div class="regular-clock">
+              <div id="date">
+              </div>
+              <div id="time">
+              </div>
+          </div>
+          </div>
+      </div>
+      <div class="col-xs-6 bg-two text-center" id="clock-two"><h2><div id="clock-two-title">Binary Clock</div></h2></div>
+    </div>
+    <div class="center-row">
+      <div class="col-xs-6 bg-three text-center" id="clock-three"><h2><div id="clock-three-title">Base 4 Clock</div></h2></div>
+      <div class="col-xs-6 bg-four text-center" id="clock-four"><h2><div id="clock-four-title">Octal Clock</div></h2></div>
+    </div>
+    <div class="center-row" id="color-clock">
+       <div class="col-xs-6 text-center" id="clock-five"><h2><div id="clock-five-title">Color Clock</div></h2>
+           <div class="time-body">
+               <div id="color-code">
+               </div>
+           </div>
+       </div>
+       <div class="col-xs-6 bg-six text-center" id="clock-six"><h2><div id="clock-six-title">Backup Clock</div></h2></div>
+    </div>
+  </div>
+</div>
+
+<div id="footer">
+  <div class="container">
+    <p>&nbsp;</p>
+      <p class="lead">This binary clock demo created by &copy<a href="https://github.com/jayesh15111988/BinaryClock"> Jayesh Kawli</a></p>
+      <h6>This Bootstrap layout was made possible <a href="http://www.bootply.com">Bootply.com</a></h6>
+  </div>
+</div>
+
+	<!-- script references -->
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.0.2/jquery.min.js"></script>
+        <script type="text/javascript" src="js/jquery.jrumble.1.3.js"></script>
+        <script type="text/javascript" src="js/rumbleEventsFile.js"></script>
+        <script src="js/customPrototypes.js"></script>
+        <script src="js/timeLogic.js"></script>
+		<script src="js/bootstrap.min.js"></script>
+	</body>
+</html>
