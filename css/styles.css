@@ -116,6 +116,11 @@ body {
     font-size: 44px;
 }
 
+.progress-indicator-percentage {
+    font-size: 30px;
+    margin-top: 20px;
+}
+
 .blankBackgroundColor {
     background-color: white;
 }
@@ -200,4 +205,14 @@ body {
     height: 75%;
     width: 16%;
     background:#d58512;
+}
+
+/* This all CSS code for designing progress bar for one of the clocks designs */
+.ui-progressbar .ui-progressbar-value {
+    background-image: url('../images/progress.png');
+}
+
+#progressbar {
+    margin-top: 15%;
+    height: 60px;
 }
