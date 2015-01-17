@@ -1,46 +1,70 @@
 /**
  * Created by jayeshkawli on 1/16/15.
  */
-var chart;
+var barChart, doughnutChart;
 var titleName = ""
 window.onload = function () {
-    chart = new CanvasJS.Chart("chartContainer", {
+
+    var initialDataPoint = [
+        { label: "Hours", y: 0 },
+        { label: "Minutes", y: 0 },
+        { label: "Seconds", y: 0 }
+    ];
+
+    var titleParameters = {
+        text: titleName,
+        fontSize: 40
+    };
+
+    barChart = new CanvasJS.Chart("barChartContainer", {
         exportEnabled: true,
         animationEnabled: true,
-        title:{
-            text: titleName,
-            fontSize: 40
-        },
+        title: titleParameters,
         axisY:{
             gridThickness: 0,
             maximum: 60
-
         },
         data: [
             {
                 /*** Change type "column" to "bar", "area", "line" or "pie"***/
                 type: "column",
-                dataPoints: [
-                    { label: "Hours", y: 0 },
-                    { label: "Minutes", y: 0 },
-                    { label: "Seconds", y: 0 }
-                ]
+                dataPoints: initialDataPoint
             }
         ]
     });
-    chart.render();
+
+    //Create doughnut chart on the screen
+    doughnutChart = new CanvasJS.Chart("doughnutChartContainer",
+        {
+            exportEnabled: true,
+            animationEnabled: true,
+            title:titleParameters,
+            data: [
+                {
+                    type: "doughnut",
+                    dataPoints: initialDataPoint
+                }
+            ]
+        });
+
+    barChart.render();
+    doughnutChart.render();
 }
 
 
 function updateBarChartWithData(currentTimeData) {
    var splitTimeString = currentTimeData.split(":");
-    chart.options.title.text = currentTimeData;
+    barChart.options.title.text = currentTimeData;
+    doughnutChart.options.title.text = barChart.options.title.text;
 
-    chart.options.data[0].dataPoints =  [
+    barChart.options.data[0].dataPoints =  [
         { label: "Hours",   y: parseInt(splitTimeString[0]) },
         { label: "Minutes", y: parseInt(splitTimeString[1]) },
         { label: "Seconds", y: parseInt(splitTimeString[2]) }
     ];
 
-    chart.render();
+    doughnutChart.options.data[0].dataPoints = barChart.options.data[0].dataPoints
+
+    barChart.render();
+    doughnutChart.render();
 }
