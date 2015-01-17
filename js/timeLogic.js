@@ -4,16 +4,22 @@
 //Logic for Colored Clock
 
 var oldHoursFirstPart, oldHoursSecondPart, oldMinutesFirstPart, oldMinutesSecondPart, oldSecondsFirstPart, oldSecondsSecondPart;
+var hoursFirstPart, hoursSecondPart, minutesFirstPart, minutesSecondPart, secondsFirstPart, secondsSecondPart;
 
 function updateColorClock() {
     var currentDate = new Date();
     var dateOnly = currentDate.today();
     var timeOnly = currentDate.timeNow();
+
+    updateBarChartWithData(timeOnly);
+
     $('#date').text(dateOnly);
     $('#time').text(timeOnly);
     var currentColorCode = currentDate.currentTimeColor();
+
     $('#color-code').text(currentColorCode);
     $('#color-clock').css("background-color", currentColorCode);
+
 
     var splitTimeString = getIndividualTimeParameters(timeOnly);
     for (var i = 0, totalSplitStringLength = splitTimeString.length; i < totalSplitStringLength; i++) {
@@ -24,8 +30,8 @@ function getIndividualTimeParameters(timeString) {
     var timeStringArrayRepresentation = timeString.split(":");
     var setBitsHolder = [];
 
-    var hoursFirstPart =  parseInt(timeStringArrayRepresentation[0]/10);
-    var hoursSecondPart = timeStringArrayRepresentation[0]%10;
+    hoursFirstPart =  parseInt(timeStringArrayRepresentation[0]/10);
+    hoursSecondPart = timeStringArrayRepresentation[0]%10;
 
     //Execute following function only if hour has changed
     if(hoursFirstPart != oldHoursFirstPart || hoursSecondPart != oldHoursSecondPart) {
@@ -37,8 +43,8 @@ function getIndividualTimeParameters(timeString) {
     }
 
 
-    var minutesFirstPart = parseInt(timeStringArrayRepresentation[1]/10);
-    var minutesSecondPart = timeStringArrayRepresentation[1]%10;
+    minutesFirstPart = parseInt(timeStringArrayRepresentation[1]/10);
+    minutesSecondPart = timeStringArrayRepresentation[1]%10;
 
     //Execute following function only if hour has changed
     if(minutesFirstPart != oldMinutesFirstPart || minutesSecondPart != oldMinutesSecondPart) {
@@ -49,8 +55,9 @@ function getIndividualTimeParameters(timeString) {
         oldMinutesSecondPart = minutesSecondPart;
     }
 
-    var secondsFirstPart = parseInt(timeStringArrayRepresentation[2]/10);
-    var secondsSecondPart = timeStringArrayRepresentation[2]%10;
+
+    secondsFirstPart = parseInt(timeStringArrayRepresentation[2]/10);
+    secondsSecondPart = timeStringArrayRepresentation[2]%10;
 
     //Execute following function only if hour has changed
     if(secondsFirstPart != oldSecondsFirstPart || secondsSecondPart != oldSecondsSecondPart) {
@@ -60,6 +67,7 @@ function getIndividualTimeParameters(timeString) {
         oldSecondsFirstPart = secondsFirstPart;
         oldSecondsSecondPart = secondsSecondPart;
     }
+
     return setBitsHolder;
 }
 

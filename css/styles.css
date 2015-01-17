@@ -72,6 +72,11 @@ body {
     background:#efefef url('../images/greenBackground.jpg');
 }
 
+#regular-text {
+    color: #000000;
+    background-color: #ffffff;
+}
+
 /* Clock styles for header views - Adding rumbling effect from http://jackrugile.com/jrumble/ */
 #clock-one {
 
@@ -119,7 +124,7 @@ body {
     background-color: red;
 }
 
-.bullet-point {
+.bullet-point-binary {
     display: block;
     background-color: #000000;
     width: 20%;
@@ -130,8 +135,21 @@ body {
     border-radius: 25px;
 }
 
-#binary-clock {
+.binary-clock-footer {
+    display: block;
+    margin-top: -50px;
+    font-size: 20px;
+    height: 8%;
     background-color: #000000;
+}
+
+.time-indicator {
+    float: left;
+    width: 33%;
+    text-align: center;
+}
+
+#binary-clock {
     width: 100%;
     height: 75%;
     margin-top: 5%;
@@ -139,14 +157,14 @@ body {
 
 /* Binary clock parameters */
 .hours1{
-    background: none repeat scroll 0 0 red;
+    background: none repeat scroll 0 0 #269abc;
     float: left;
     height: 75%;
     width: 16%;
     margin-left: 2%;
 }
 .hours2{
-    background: none repeat scroll 0 0 blue;
+    background: none repeat scroll 0 0 #269abc;
     float: left;
     height: 75%;
     width: 16%;
@@ -156,17 +174,17 @@ body {
     float: left;
     height: 75%;
     width: 16%;
-    background:green;
+    background:#398439;
 }
 
 .minutes2{
-    background: none repeat scroll 0 0 red;
+    background: none repeat scroll 0 0 #398439;
     float: left;
     height: 75%;
     width: 16%;
 }
 .seconds1{
-    background: none repeat scroll 0 0 blue;
+    background: none repeat scroll 0 0 #d58512;
     float: left;
     height: 75%;
     width: 16%;
@@ -175,5 +193,5 @@ body {
     float: left;
     height: 75%;
     width: 16%;
-    background:green;
+    background:#d58512;
 }
