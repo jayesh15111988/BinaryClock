@@ -1,7 +1,7 @@
 
 /* Source from http://www.pnathan.com/static/elements.json */
 
-{
+var elementsData = {
     "Hydrogen": {
         "symbol" : "H",
         "atomic_number" : 1,
@@ -2598,4 +2598,7 @@
         "lattice_structure" : "n/a",
         "lattice_constant ang" : "n/a"
     }
-}
+};
+
+//Convert these elements in different form
+//WIP

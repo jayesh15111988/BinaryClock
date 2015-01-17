@@ -6,6 +6,7 @@
 var oldHoursFirstPart, oldHoursSecondPart, oldMinutesFirstPart, oldMinutesSecondPart, oldSecondsFirstPart, oldSecondsSecondPart;
 var hoursFirstPart, hoursSecondPart, minutesFirstPart, minutesSecondPart, secondsFirstPart, secondsSecondPart;
 
+
 function updateColorClock() {
     var currentDate = new Date();
     var dateOnly = currentDate.today();
@@ -100,8 +101,13 @@ function resetAllBullets(range) {
         }
 }
 
+createBinaryClockBulletDivs();
 resetAllBullets(0, 24);
 setInterval(updateColorClock, 1000);
+
+function createBinaryClockBulletDivs() {
+    //WIP
+}
 
 function getDateParameters() {
     var currentDate = new Date();
