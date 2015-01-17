@@ -13,7 +13,8 @@ window.onload = function () {
 
     var titleParameters = {
         text: titleName,
-        fontSize: 40
+        fontSize: 40,
+        fontFamily: "Century Gothic"
     };
 
     barChart = new CanvasJS.Chart("barChartContainer", {

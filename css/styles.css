@@ -127,12 +127,18 @@ body {
 .bullet-point-binary {
     display: block;
     background-color: #000000;
-    width: 20%;
-    height: 10%;
+    width: 25px;
+    height: 25px;
     margin: 24% 40% 24% 40%;
-    -moz-border-radius: 25px;
-    -webkit-border-radius: 25px;
+    -moz-border-radius: 15px;
+    -webkit-border-radius: 15px;
     border-radius: 25px;
+}
+
+.hidden-section {
+    /* Commenting for time being, but in case we need to hide unused bullet points in future, just uncomment this line
+    and everything will work as expected */
+    /*visibility: hidden; */
 }
 
 .binary-clock-footer {
