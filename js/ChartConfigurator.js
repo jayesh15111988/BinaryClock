@@ -7,13 +7,13 @@ window.onload = function () {
     chart = new CanvasJS.Chart("chartContainer", {
         exportEnabled: true,
         animationEnabled: true,
-        animationDuration: 2000,
         title:{
             text: titleName,
             fontSize: 40
         },
         axisY:{
-            gridThickness: 0
+            gridThickness: 0,
+            maximum: 60
 
         },
         data: [
@@ -35,10 +35,12 @@ window.onload = function () {
 function updateBarChartWithData(currentTimeData) {
    var splitTimeString = currentTimeData.split(":");
     chart.options.title.text = currentTimeData;
+
     chart.options.data[0].dataPoints =  [
         { label: "Hours",   y: parseInt(splitTimeString[0]) },
         { label: "Minutes", y: parseInt(splitTimeString[1]) },
         { label: "Seconds", y: parseInt(splitTimeString[2]) }
     ];
+
     chart.render();
 }
