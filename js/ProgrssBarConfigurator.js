@@ -8,18 +8,19 @@
     $('#progressbar').progressbar({value: 0});
 
     function updateProgressBarWithTimeData (hours, minutes, seconds) {
-
+        //console.log("hours " + hours + "minutes " + minutes + "seconds " + seconds);
         if(initialSeconds == 0) {
             initialSeconds = hours*3600 + minutes * 60 + seconds;
         }
         else {
-            initialSeconds += seconds;
+            initialSeconds += 1;
             if(initialSeconds > totalSecondsInDay) {
                 initialSeconds = 0;
             }
         }
-
+        //console.log("total seconds " + initialSeconds);
         var currentCompletedTimeRatio = (initialSeconds/totalSecondsInDay)*100;
+        //console.log("Ratio is " + currentCompletedTimeRatio);
         var choppedCurrentTimeCompletedRatio = parseFloat(currentCompletedTimeRatio).toFixed(2);
         var percentageTimeTillDayFinishes = parseFloat(100.0 - choppedCurrentTimeCompletedRatio).toFixed(2);
         var percentageTimeTillNoon = (initialSeconds > totalSecondsTillNoon) ? 0 : parseFloat((initialSeconds/totalSecondsTillNoon)*100).toFixed(2);
