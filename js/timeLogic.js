@@ -101,13 +101,10 @@ function resetAllBullets(range) {
         }
 }
 
-createBinaryClockBulletDivs();
+
 resetAllBullets(0, 24);
 setInterval(updateColorClock, 1000);
 
-function createBinaryClockBulletDivs() {
-    //WIP
-}
 
 function getDateParameters() {
     var currentDate = new Date();
