@@ -1,6 +1,6 @@
 html,
 body {
-  height: 150%;
+  height: 175%;
   font-family: " Century Gothic";
   font-weight: 300;
 }
@@ -39,7 +39,7 @@ body {
 }
 
 .center-row {
-  height:33%;
+  height:25%;
   width:100%;
   display: table-row;
 }
@@ -70,6 +70,14 @@ body {
 }
 .bg-six {
     background:#efefef url('../images/greenBackground.jpg');
+}
+
+.bg-seven {
+    background:#efefef url('../images/purpleBackground.jpg');
+}
+
+.bg-eight {
+    background:#efefef url('../images/waterBackground.jpg');
 }
 
 #regular-text {
@@ -215,4 +223,54 @@ body {
 #progressbar {
     margin-top: 15%;
     height: 60px;
+}
+
+.element-initial-block {
+    font-family: 'Vollkorn' !important;
+    font-weight: 400;
+    font-style: normal;
+    font-size: 74px;
+    height: 50px;
+    line-height: 1.1em;
+    width: 50%;
+    margin: 20px auto;
+
+}
+
+.element-details {
+    font-family: 'Vollkorn' !important;
+    width: 100%;
+    height: 64%;
+    margin: 40px auto auto;
+    font-size: 20px;
+    border: 2px solid #000000;
+    border-radius: 25px;
+    background-color: #a1a1a1;
+}
+
+.first-row, .second-row, .third-row {
+    height: 33%;
+    width: 100%;
+    margin: 5px 0;
+}
+
+.first-row {
+    border-bottom: 1px solid #000000;
+}
+
+.second-row {
+    border-bottom: 1px solid #000000;
+}
+
+/* For arranging element property names horizontally in the container */
+.first-column, .second-column, .third-column{
+    float: left;
+    height: 33%;
+    width: 30%;
+    margin: 0 10px;
+}
+
+.second-column {
+    border-left: 1px solid #000000;
+    border-right: 1px solid #000000;
 }
