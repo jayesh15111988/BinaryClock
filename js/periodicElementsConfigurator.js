@@ -7,25 +7,26 @@ var inputRangeLower = 0, inputRangeUpper = 720;
 var outputRangeLower = 0, outputRangeUpper = 117;
 var nextUpdatedSecondsValue = -1;
 var didUpdateValueForFirstTime = false;
-var elementUpdateTimeNormalizingFactor = 6.14;
+var elementUpdateTimeNormalizingFactor = 6.15;
 
 function sendUpdateWithCurrentNumberOfSeconds(numberOfSecondsSoFar) {
     var numberOfMinutes = numberOfSecondsSoFar / 60;
     var scaledNumberOfMinutes = numberOfMinutes % 721;
 
+    //console.log("Seconds "+ numberOfMinutes);
     newElementSequenceNumber  = parseInt((scaledNumberOfMinutes-inputRangeLower)/(inputRangeUpper-inputRangeLower) * (outputRangeUpper-outputRangeLower) + outputRangeLower);
-
 
     if(newElementSequenceNumber != oldElementSequenceNumber) {
         var currentElementName = allElementsCollectionWithNames[newElementSequenceNumber];
         var currentElementDetails = elementsData[currentElementName]; //This is dictionary
         configureCurrentViewWithElementDetails(currentElementDetails, currentElementName);
         oldElementSequenceNumber = newElementSequenceNumber;
-        console.log("Current value of element update " + numberOfMinutes);
+        //console.log("Current value of element update " + numberOfMinutes);
+        //console.log(new Date() + " Time for this update ");
         //We came here for the first time right
 
         if(didUpdateValueForFirstTime == true) {
-            nextUpdatedSecondsValue = parseInt(elementUpdateTimeNormalizingFactor*60);
+            nextUpdatedSecondsValue = (elementUpdateTimeNormalizingFactor*60);
         }
 
         didUpdateValueForFirstTime = true;
