@@ -1,6 +1,6 @@
 html,
 body {
-  height: 175%;
+  height: 180%;
   font-family: " Century Gothic";
   font-weight: 300;
 }
@@ -233,7 +233,7 @@ body {
     height: 50px;
     line-height: 1.1em;
     width: 50%;
-    margin: 20px auto;
+    margin: 0px auto;
 
 }
 
