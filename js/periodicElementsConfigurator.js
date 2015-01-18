@@ -28,7 +28,6 @@ function sendUpdateWithCurrentNumberOfSeconds(numberOfSecondsSoFar) {
         if(didUpdateValueForFirstTime == true) {
             nextUpdatedSecondsValue = (elementUpdateTimeNormalizingFactor*60);
         }
-
         didUpdateValueForFirstTime = true;
     }
 

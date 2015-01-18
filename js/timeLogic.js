@@ -16,6 +16,8 @@ function updateColorClock() {
 
     $('#date').text(dateOnly);
     $('#time').text(timeOnly);
+    $("#current-time").text(timeOnly);
+
     var currentColorCode = currentDate.currentTimeColor();
 
     $('#color-code').text(currentColorCode);

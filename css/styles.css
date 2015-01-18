@@ -124,6 +124,10 @@ body {
     font-size: 44px;
 }
 
+#current-time {
+    font-size: 44px;
+}
+
 .progress-indicator-percentage {
     font-size: 30px;
     margin-top: 20px;
@@ -274,3 +278,38 @@ body {
     border-left: 1px solid #000000;
     border-right: 1px solid #000000;
 }
+
+.column-coin-toss {
+    font-family: 'Vollkorn' !important;
+    float: left;
+    height: 35%;
+    width: 30%;
+    font-size: 64px;
+    margin-left: 15%;
+    background-color: rgba(12,129,127,0.50);
+    margin-top: 5%;
+}
+
+.column-coin-toss {
+    font-family: 'Vollkorn' !important;
+    height: 55%;
+    font-size: 58px;
+    width: 36%;
+    background-color: rgba(12,129,127,0.50);
+    margin-top: 5%;
+}
+
+.first-column-coin-toss {
+    float: left;
+    margin-left: 5%;
+}
+
+.second-column-coin-toss {
+    float: right;
+    margin-right: 5%;
+}
+
+#total-tosses {
+    font-size: 20px;
+}
+
