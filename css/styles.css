@@ -307,9 +307,19 @@ body {
 .second-column-coin-toss {
     float: right;
     margin-right: 5%;
+    margin-left: 0;
 }
 
 #total-tosses {
     font-size: 20px;
+}
+
+.majority-marker {
+    float: left;
+    background-color: rgba(0, 0, 0, 0);
+    position: relative;
+    width: 10%;
+    height: 15%;
+    margin: 15% auto 3% 3%;
 }
 
