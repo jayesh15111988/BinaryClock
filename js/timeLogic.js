@@ -48,7 +48,7 @@ function getIndividualTimeParameters(timeString) {
 
     minutesFirstPart = parseInt(timeStringArrayRepresentation[1]/10);
     minutesSecondPart = timeStringArrayRepresentation[1]%10;
-
+console.log("blah");
     //Execute following function only if hour has changed
     if(minutesFirstPart != oldMinutesFirstPart || minutesSecondPart != oldMinutesSecondPart) {
         resetAllBullets([9,17]);
