@@ -38,6 +38,7 @@ function getIndividualTimeParameters(timeString) {
 
     //Execute following function only if hour has changed
     if(hoursFirstPart != oldHoursFirstPart || hoursSecondPart != oldHoursSecondPart) {
+        updateHourHand(timeStringArrayRepresentation);
         resetAllBullets([0,9]);
         setBitsHolder = setBitsHolder.concat(getSetBits(hoursFirstPart, 0));
         setBitsHolder = setBitsHolder.concat(getSetBits(hoursSecondPart, 1));
@@ -48,9 +49,10 @@ function getIndividualTimeParameters(timeString) {
 
     minutesFirstPart = parseInt(timeStringArrayRepresentation[1]/10);
     minutesSecondPart = timeStringArrayRepresentation[1]%10;
-console.log("blah");
+
     //Execute following function only if hour has changed
     if(minutesFirstPart != oldMinutesFirstPart || minutesSecondPart != oldMinutesSecondPart) {
+        updateMinuteHand(timeStringArrayRepresentation);
         resetAllBullets([9,17]);
         setBitsHolder = setBitsHolder.concat(getSetBits(minutesFirstPart, 2));
         setBitsHolder = setBitsHolder.concat(getSetBits(minutesSecondPart, 3));
@@ -65,6 +67,7 @@ console.log("blah");
     //Execute following function only if hour has changed
     if(secondsFirstPart != oldSecondsFirstPart || secondsSecondPart != oldSecondsSecondPart) {
         resetAllBullets([17,24]);
+        updateSecondHand(timeStringArrayRepresentation);
         setBitsHolder = setBitsHolder.concat(getSetBits(secondsFirstPart, 4));
         setBitsHolder = setBitsHolder.concat(getSetBits(secondsSecondPart, 5));
         oldSecondsFirstPart = secondsFirstPart;
