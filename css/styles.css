@@ -324,11 +324,16 @@ body {
 }
 
 /* This CSS is for designing a clock which acts in the form of blending various colors around */
-#color-gradient-canvas {
-
-}
 
 #color-blend-clock {
     background-color: #777777;
+}
+
+#color-scheme-adjust-button {
+    float: right;
+}
+
+#shape-changer {
+    float: right;
 }
 

@@ -7,6 +7,11 @@ var ctx, radiusOfClock, clockCenterX, clockCenterY;
 var clockComponentsAlpha = 1.0;
 var hourHandRadius, minuteHandRadius, secondHandRadius;
 var canvas;
+var circleAngleMultiplier = 2;
+var isDefaultColorModel = true;
+var colorModel = "RGB"; //Default model is RGB, alternate model is CMY
+var colorModelsMetadata = {"RGB" : {composition : "screen", "first" : "(255,0,0)", "second" : "(0,255,0)", "third" : "(0,0,255)"}
+                          ,"CMY" : {composition : "multiply", "first" : "(255,255,0)", "second" : "(0,255,255)", "third" : "(255,0,255)"}}; //Actually order is like YCM
 
 function resetCanvasView() {
     canvas = document.getElementById('color-gradient-canvas');
@@ -14,7 +19,8 @@ function resetCanvasView() {
     canvas.width = winMin;
     canvas.height = winMin*0.65;
     ctx = canvas.getContext('2d');
-    ctx.globalCompositeOperation = 'screen';
+    //Screen if using RGB model
+    ctx.globalCompositeOperation = colorModelsMetadata[colorModel].composition;
 
     //Create a dot at the center of circle
     ctx.fillStyle = 'rgb(255,255,255)';
@@ -53,9 +59,6 @@ function drawCanvasElements() {
     updateSecondHand(emptyTimeValueArray);
 }
 
-
-
-
 function updateSecondHand(timeArray) {
     resetCanvasView();
 
@@ -63,7 +66,6 @@ function updateSecondHand(timeArray) {
     var secondAngleInRadian = -convertDegreeToRadian(secondHandAngle);
 
     var minuteHandAngle = 6 * timeArray[1] + 0.1 * timeArray[2];
-    console.log("minute hand angle " + 6 * timeArray[1] + " " + (0.1 * timeArray[2]));
     var minuteAngleInRadian = -convertDegreeToRadian(minuteHandAngle);
 
     var hourHandAngle = 0.5*(60*(timeArray[0]%12) + parseInt(timeArray[1]));
@@ -79,23 +81,26 @@ function updateSecondHand(timeArray) {
     var newHourHandYPosition = secondHandRadius * Math.cos(hourAngleInRadian);
 
     //Blue - Second Hand
-    ctx.fillStyle = 'rgba(0,0,255,'+ clockComponentsAlpha +')';
+    //Yellow
+    ctx.fillStyle = 'rgb'+colorModelsMetadata[colorModel].first;
     ctx.beginPath();
-    ctx.arc(clockCenterX - newSecondHandXPosition, clockCenterY - newSecondHandYPosition, secondHandRadius, 0, Math.PI*2, true);
+    ctx.arc(clockCenterX - newSecondHandXPosition, clockCenterY - newSecondHandYPosition, secondHandRadius, 0, Math.PI*circleAngleMultiplier, true);
     ctx.closePath();
     ctx.fill();
 
     //Green - Minute Hand
-    ctx.fillStyle = 'rgba(0,255,0,'+ clockComponentsAlpha +')';
+    //cyan
+    ctx.fillStyle = 'rgb'+colorModelsMetadata[colorModel].second;
     ctx.beginPath();
-    ctx.arc(clockCenterX - newMinuteHandXPosition, clockCenterY - newMinuteHandYPosition,minuteHandRadius, 0, Math.PI*2, true);
+    ctx.arc(clockCenterX - newMinuteHandXPosition, clockCenterY - newMinuteHandYPosition,minuteHandRadius, 0, Math.PI*circleAngleMultiplier, true);
     ctx.closePath();
     ctx.fill();
 
     //Red - Hour Hand
-    ctx.fillStyle = 'rgba(255,0,0,'+ clockComponentsAlpha +')';
+    //Magenta
+    ctx.fillStyle = 'rgb'+colorModelsMetadata[colorModel].third;
     ctx.beginPath();
-    ctx.arc(clockCenterX - newHourHandXPosition, clockCenterY - newHourHandYPosition,hourHandRadius, 0, Math.PI*2, true);
+    ctx.arc(clockCenterX - newHourHandXPosition, clockCenterY - newHourHandYPosition,hourHandRadius, 0, Math.PI*circleAngleMultiplier, true);
     ctx.closePath();
     ctx.fill();
 }
@@ -104,6 +109,26 @@ function convertDegreeToRadian(angleInDegree) {
     return (angleInDegree * (Math.PI/180));
 }
 
+$(document).ready(function() {
+
+    $("#shape-changer").click(function(){
+       circleAngleMultiplier = (circleAngleMultiplier == 2) ? 1 : 2;
+    });
+
+    $("#color-scheme-adjust-button" ).click(function() {
+        isDefaultColorModel = !isDefaultColorModel;
+
+        if(isDefaultColorModel) {
+            colorModel = "RGB";
+            $(this).html("Change to CMY Model");
+        }
+        else {
+            colorModel = "CMY";
+            $(this).html("Change to RGB Model");
+        }
+
+    });
+});
 resetCanvasView();
 setupCanvasView();
 drawCanvasElements();

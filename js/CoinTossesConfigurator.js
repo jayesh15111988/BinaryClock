@@ -11,7 +11,6 @@ var oldMajority = majorityCoinEnum.HEAD;
 var newMajority = majorityCoinEnum.TAIL;
 
 function updateCoinTosses() {
-    console.log("Updated..");
     var randomNumber = getRandomInt(0,1);
     if(randomNumber == 0) {
         numberOfHeads++;
