@@ -8,37 +8,52 @@
 var p = [], l = [], m = [];
 
 function updateBezierCurveWithSplitTime(hoursFirstPart, hoursSecondPart, minutesFirstPart, minutesSecondPart, secondsFirstPart, secondsSecondPart) {
-    var brd = JXG.JSXGraph.initBoard('jxgbox', {boundingbox: [-10, 90, 90, -10], keepaspectratio: true, axis: true, registerEvents: false});
 
-    p = [];
-    l = [];
-    m = [];
+    var brd = JXG.JSXGraph.initBoard('jxgbox',{boundingbox:[-10, 100, 100, -10],keepaspectratio: false, axis: true, registerEvents: false});
+    var p = [], l = [], m= [];
 
     brd.suspendUpdate();
-    col = 'blue';
-    p.push(brd.createElement('point', [getTransformedValueOfTimeComponent(hoursFirstPart), getTransformedValueOfTimeComponent(hoursSecondPart)], {strokeColor: col, fillColor: col}));        // data point
-
-    col = 'green';
-    p.push(brd.createElement('point', [getTransformedValueOfTimeComponent(minutesFirstPart), getTransformedValueOfTimeComponent(minutesSecondPart)], {strokeColor: col, fillColor: col}));   // control point
-
-    col = 'red';
-    p.push(brd.createElement('point', [getTransformedValueOfTimeComponent(secondsFirstPart), getTransformedValueOfTimeComponent(secondsSecondPart)], {strokeColor: col, fillColor: col}));   // control point
-
-    l.push(brd.createElement('segment', [p[0], p[1]], {strokeOpacity: 0.5}));
-    l.push(brd.createElement('segment', [p[1], p[2]], {strokeOpacity: 0.5}));
-
-    col = 'cyan';
-    m.push(brd.createElement('midpoint', [l[0]], {face: 'o', size: 1, strokeColor: col, fillColor: col, name: ''}));
-
-    col = 'yellow';
-    m.push(brd.createElement('midpoint', [l[1]], {face: 'o', size: 1, strokeColor: col, fillColor: col, name: ''}));
-    l.push(brd.createElement('segment', [m[0], m[1]], {strokeOpacity: 0.5}));
 
     col = 'black';
-    m.push(brd.createElement('midpoint', [l[2]], {face: 'o', size: 1, strokeColor: col, fillColor: col, name: ''}));
-    m.push(brd.createElement('midpoint', [l[2]], {face: 'o', size: 1, strokeColor: col, fillColor: col, name: ''}));
+    var currentDate = new Date();
+    var currentDayValue = currentDate.getDate();
+    p.push(brd.createElement('point', [parseInt(currentDayValue/10)*10, (currentDayValue%10)*10], {strokeColor: col, fillColor: col, name : 'Date : ' + currentDayValue}));
 
-    var c = brd.createElement('curve', JXG.Math.Numerics.bezier(p), {strokecolor:'blue', strokeOpacity:0.6, strokeWidth:5});
+    col = 'blue';
+    p.push(brd.createElement('point',[getTransformedValueOfTimeComponent(hoursFirstPart), getTransformedValueOfTimeComponent(hoursSecondPart)],{strokeColor:col,fillColor:col,name: 'Hours : ' + hoursFirstPart + hoursSecondPart}));        // data point
+
+    col = 'green'
+    p.push(brd.createElement('point',[getTransformedValueOfTimeComponent(minutesFirstPart), getTransformedValueOfTimeComponent(minutesSecondPart)],{strokeColor:col,fillColor:col, name : 'Minutes : ' + minutesFirstPart + minutesSecondPart}));   // control point
+
+    col = 'red';
+    p.push(brd.createElement('point',[getTransformedValueOfTimeComponent(secondsFirstPart), getTransformedValueOfTimeComponent(secondsSecondPart)],{strokeColor:col,fillColor:col, name : 'Seconds : ' + secondsFirstPart + secondsSecondPart}));       // data point
+
+    l.push(brd.createElement('segment',[p[0],p[1]],{strokeOpacity:0.5}));
+    l.push(brd.createElement('segment',[p[1],p[2]],{strokeOpacity:0.5}));
+    l.push(brd.createElement('segment',[p[2],p[3]],{strokeOpacity:0.5}));
+
+    col = '#002456';
+    m.push(brd.createElement('midpoint',[l[0]],{face:'o',size:1,strokeColor:col,fillColor:col, name:''}));
+    col = '#006456';
+    m.push(brd.createElement('midpoint',[l[1]],{face:'o',size:1,strokeColor:col,fillColor:col, name:''}));
+    col = '#804000'
+    m.push(brd.createElement('midpoint',[l[2]],{face:'o',size:1,strokeColor:col,fillColor:col, name:''}));
+
+    l.push(brd.createElement('segment',[m[0],m[1]],{strokeOpacity:0.5}));
+    l.push(brd.createElement('segment',[m[1],m[2]],{strokeOpacity:0.5}));
+
+    col = "#002456"
+    m.push(brd.createElement('midpoint',[l[3]],{face:'o',size:1,strokeColor:col,fillColor:col, name:''}));
+
+    col = "#006456"
+    m.push(brd.createElement('midpoint',[l[4]],{face:'o',size:1,strokeColor:col,fillColor:col, name:''}));
+
+    l.push(brd.createElement('segment',[m[3],m[4]],{strokeOpacity:0.5}));
+
+    col = "#002456"
+    m.push(brd.createElement('midpoint',[l[5]],{face:'o',size:1,strokeColor:col,fillColor:col, name:''}));
+
+    var c = brd.createElement('curve', JXG.Math.Numerics.bezier(p), {strokecolor:'#800080', strokeOpacity:0.6, strokeWidth:3});
     brd.unsuspendUpdate();
 }
 
