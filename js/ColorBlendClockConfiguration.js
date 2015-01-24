@@ -7,6 +7,8 @@ var ctx, radiusOfClock, clockCenterX, clockCenterY;
 var clockComponentsAlpha = 1.0;
 var hourHandRadius, minuteHandRadius, secondHandRadius;
 var canvas;
+var toDrawClockLines = true;
+var defaultClockHandColor = "rgb(255,255,255)";
 var circleAngleMultiplier = 2;
 var isDefaultColorModel = true;
 var colorModel = "RGB"; //Default model is RGB, alternate model is CMY
@@ -23,18 +25,21 @@ function resetCanvasView() {
     ctx.globalCompositeOperation = colorModelsMetadata[colorModel].composition;
 
     //Create a dot at the center of circle
-    ctx.fillStyle = 'rgb(255,255,255)';
-    ctx.beginPath();
-    ctx.arc(canvas.width/2,canvas.height/2 ,5, 0, Math.PI*2, true);
-    ctx.closePath();
-    ctx.fill();
+
+    addCircleWithParameters('rgb(255,255,255)', (canvas.width/2), (canvas.height/2), 5);
 
     //Create big circle centered on the screen
-    ctx.strokeStyle = 'rgb(255,255,255)';
-    ctx.beginPath();
-    ctx.arc(clockCenterX,clockCenterY,radiusOfClock, 0, Math.PI*2, true);
+    addOuterCircle("rgb(255,255,255)","rgba(0,0,0,0)",radiusOfClock, clockCenterX, clockCenterY);
+}
+
+function addOuterCircle(strokeColor, fillColor, radius, centerX, centerY) {
     ctx.lineWidth = 5;
+    ctx.strokeStyle = strokeColor;
+    ctx.fillStyle = fillColor;
+    ctx.beginPath();
+    ctx.arc(centerX,centerY,radius, 0, Math.PI*2, true);
     ctx.closePath();
+    ctx.fill();
     ctx.stroke();
 }
 
@@ -60,8 +65,8 @@ function drawCanvasElements() {
 }
 
 function updateSecondHand(timeArray) {
-    resetCanvasView();
 
+    resetCanvasView();
     var secondHandAngle = 6*timeArray[2];
     var secondAngleInRadian = -convertDegreeToRadian(secondHandAngle);
 
@@ -82,54 +87,38 @@ function updateSecondHand(timeArray) {
 
     //Red - Second Hand
     //Yellow
-    ctx.fillStyle = 'rgb'+colorModelsMetadata[colorModel].first;
-    ctx.beginPath();
-    ctx.arc(clockCenterX - newSecondHandXPosition, clockCenterY - newSecondHandYPosition, secondHandRadius, 0, Math.PI*circleAngleMultiplier, true);
-    ctx.closePath();
-    ctx.fill();
-
-    //Draw line on second hand to indicate its position
-    ctx.strokeStyle = "rgb(255,255,255)";
-    ctx.beginPath();
-    ctx.moveTo(clockCenterX, clockCenterY);
-    ctx.lineTo((clockCenterX - newSecondHandXPosition*2), (clockCenterY - newSecondHandYPosition*2));
-    ctx.stroke();
+    addCircleWithParameters('rgb'+colorModelsMetadata[colorModel].first,(clockCenterX - newSecondHandXPosition),(clockCenterY - newSecondHandYPosition),secondHandRadius);
 
     //Green - Minute Hand
     //cyan
-    ctx.fillStyle = 'rgb'+colorModelsMetadata[colorModel].second;
-    ctx.beginPath();
-    ctx.arc(clockCenterX - newMinuteHandXPosition, clockCenterY - newMinuteHandYPosition,minuteHandRadius, 0, Math.PI*circleAngleMultiplier, true);
-    ctx.closePath();
-    ctx.fill();
-
-    ctx.strokeStyle = "rgb(255,255,255)";
-    ctx.beginPath();
-    ctx.moveTo(clockCenterX, clockCenterY);
-    ctx.lineTo(clockCenterX - 2*newMinuteHandXPosition, clockCenterY - 2*newMinuteHandYPosition);
-    ctx.stroke();
+    addCircleWithParameters('rgb'+colorModelsMetadata[colorModel].second,(clockCenterX - newMinuteHandXPosition),( clockCenterY - newMinuteHandYPosition),minuteHandRadius)
 
     //Blue - Hour Hand
     //Magenta
-    ctx.fillStyle = 'rgb'+colorModelsMetadata[colorModel].third;
+    addCircleWithParameters('rgb'+colorModelsMetadata[colorModel].third, (clockCenterX - newHourHandXPosition), (clockCenterY - newHourHandYPosition), hourHandRadius);
+
+    if(toDrawClockLines == true) {
+        //Draw line on second hand to indicate its position
+        addLineWithParameters(defaultClockHandColor, (clockCenterX - newSecondHandXPosition*2), (clockCenterY - newSecondHandYPosition*2));
+        addLineWithParameters(defaultClockHandColor, (clockCenterX - 2*newMinuteHandXPosition), (clockCenterY - 2*newMinuteHandYPosition));
+        addLineWithParameters(defaultClockHandColor,(clockCenterX - 2*newHourHandXPosition), (clockCenterY - 2*newHourHandYPosition));
+    }
+}
+
+function addCircleWithParameters(circleColor, xCenterValue, yCenterValue, radius) {
+    ctx.fillStyle = circleColor
     ctx.beginPath();
-    ctx.arc(clockCenterX - newHourHandXPosition, clockCenterY - newHourHandYPosition,hourHandRadius, 0, Math.PI*circleAngleMultiplier, true);
+    ctx.arc(xCenterValue, yCenterValue,radius, 0, Math.PI*circleAngleMultiplier, true);
     ctx.closePath();
     ctx.fill();
+}
 
-    ctx.strokeStyle = "rgb(255,255,255)";
+function addLineWithParameters(lineColor, destinationX, destinationY) {
+    ctx.strokeStyle = lineColor;
     ctx.beginPath();
     ctx.moveTo(clockCenterX, clockCenterY);
-    ctx.lineTo(clockCenterX - 2*newHourHandXPosition, clockCenterY - 2*newHourHandYPosition);
+    ctx.lineTo(destinationX,destinationY);
     ctx.stroke();
-}
-
-function addCircleWithParameters() {
-
-}
-
-function addLineWithParameters() {
-
 }
 
 function convertDegreeToRadian(angleInDegree) {
@@ -140,6 +129,10 @@ $(document).ready(function() {
 
     $("#shape-changer").click(function(){
        circleAngleMultiplier = (circleAngleMultiplier == 2) ? 1 : 2;
+    });
+
+    $("#hand-drawer").click(function(){
+       toDrawClockLines = !toDrawClockLines;
     });
 
     $("#color-scheme-adjust-button" ).click(function() {
