@@ -73,6 +73,8 @@ function getIndividualTimeParameters(timeString) {
         oldSecondsSecondPart = secondsSecondPart;
     }
 
+    updateBezierCurveWithSplitTime(hoursFirstPart, hoursSecondPart, minutesFirstPart, minutesSecondPart, secondsFirstPart, secondsSecondPart);
+
     return setBitsHolder;
 }
 
@@ -80,7 +82,7 @@ function getSetBits(inputDecimalNumber, blockNumber) {
     var decimalRepresentation = inputDecimalNumber.toString(2);
 
     if (decimalRepresentation.length < 4) {
-        decimalRepresentation = Array(4 - decimalRepresentation.length + 1).join("0") + decimalRepresentation;
+        decimalRepresentation = new Array(4 - decimalRepresentation.length + 1).join("0") + decimalRepresentation;
     }
     var decimalArrayRepresentation = decimalRepresentation.split("");
 
@@ -105,10 +107,8 @@ function resetAllBullets(range) {
         }
 }
 
-
 resetAllBullets(0, 24);
 setInterval(updateColorClock, 1000);
-
 
 function getDateParameters() {
     var currentDate = new Date();

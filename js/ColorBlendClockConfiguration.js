@@ -4,7 +4,6 @@
 /* Ref http://codepen.io/chriscoyier/pen/Kkliq */
 
 var ctx, radiusOfClock, clockCenterX, clockCenterY;
-var clockComponentsAlpha = 1.0;
 var hourHandRadius, minuteHandRadius, secondHandRadius;
 var canvas;
 var toDrawClockLines = true;
@@ -111,7 +110,7 @@ function updateTime(timeArray) {
 
     //Green - Minute Hand
     //cyan
-    addCircleWithParameters('rgb'+colorModelsMetadata[colorModel].second,(clockCenterX - newMinuteHandXPosition),( clockCenterY - newMinuteHandYPosition),minuteHandRadius)
+    addCircleWithParameters('rgb'+colorModelsMetadata[colorModel].second,(clockCenterX - newMinuteHandXPosition),( clockCenterY - newMinuteHandYPosition),minuteHandRadius);
 
     //Blue - Hour Hand
     //Magenta
@@ -127,9 +126,8 @@ function updateTime(timeArray) {
     }
 }
 
-
 function addCircleWithParameters(circleColor, xCenterValue, yCenterValue, radius) {
-    ctx.fillStyle = circleColor
+    ctx.fillStyle = circleColor;
     ctx.beginPath();
     ctx.arc(xCenterValue, yCenterValue,radius, 0, Math.PI*circleAngleMultiplier, true);
     ctx.closePath();

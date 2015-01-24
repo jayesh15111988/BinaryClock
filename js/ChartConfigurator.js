@@ -2,7 +2,7 @@
  * Created by jayeshkawli on 1/16/15.
  */
 var barChart, doughnutChart;
-var titleName = ""
+var titleName = "";
 window.onload = function () {
 
     var initialDataPoint = [
@@ -50,7 +50,7 @@ window.onload = function () {
 
     barChart.render();
     doughnutChart.render();
-}
+};
 
 
 function updateBarChartWithData(currentTimeData) {
@@ -68,7 +68,7 @@ function updateBarChartWithData(currentTimeData) {
         { label: "Seconds", y: secondsInInteger }
     ];
 
-    doughnutChart.options.data[0].dataPoints = barChart.options.data[0].dataPoints
+    doughnutChart.options.data[0].dataPoints = barChart.options.data[0].dataPoints;
 
     barChart.render();
     doughnutChart.render();
