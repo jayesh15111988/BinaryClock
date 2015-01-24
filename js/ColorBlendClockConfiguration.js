@@ -77,16 +77,23 @@ function updateSecondHand(timeArray) {
     var newMinuteHandXPosition = minuteHandRadius * Math.sin(minuteAngleInRadian);
     var newMinuteHandYPosition = minuteHandRadius * Math.cos(minuteAngleInRadian);
 
-    var newHourHandXPosition = secondHandRadius * Math.sin(hourAngleInRadian);
-    var newHourHandYPosition = secondHandRadius * Math.cos(hourAngleInRadian);
+    var newHourHandXPosition = hourHandRadius * Math.sin(hourAngleInRadian);
+    var newHourHandYPosition = hourHandRadius * Math.cos(hourAngleInRadian);
 
-    //Blue - Second Hand
+    //Red - Second Hand
     //Yellow
     ctx.fillStyle = 'rgb'+colorModelsMetadata[colorModel].first;
     ctx.beginPath();
     ctx.arc(clockCenterX - newSecondHandXPosition, clockCenterY - newSecondHandYPosition, secondHandRadius, 0, Math.PI*circleAngleMultiplier, true);
     ctx.closePath();
     ctx.fill();
+
+    //Draw line on second hand to indicate its position
+    ctx.strokeStyle = "rgb(255,255,255)";
+    ctx.beginPath();
+    ctx.moveTo(clockCenterX, clockCenterY);
+    ctx.lineTo((clockCenterX - newSecondHandXPosition*2), (clockCenterY - newSecondHandYPosition*2));
+    ctx.stroke();
 
     //Green - Minute Hand
     //cyan
@@ -96,13 +103,33 @@ function updateSecondHand(timeArray) {
     ctx.closePath();
     ctx.fill();
 
-    //Red - Hour Hand
+    ctx.strokeStyle = "rgb(255,255,255)";
+    ctx.beginPath();
+    ctx.moveTo(clockCenterX, clockCenterY);
+    ctx.lineTo(clockCenterX - 2*newMinuteHandXPosition, clockCenterY - 2*newMinuteHandYPosition);
+    ctx.stroke();
+
+    //Blue - Hour Hand
     //Magenta
     ctx.fillStyle = 'rgb'+colorModelsMetadata[colorModel].third;
     ctx.beginPath();
     ctx.arc(clockCenterX - newHourHandXPosition, clockCenterY - newHourHandYPosition,hourHandRadius, 0, Math.PI*circleAngleMultiplier, true);
     ctx.closePath();
     ctx.fill();
+
+    ctx.strokeStyle = "rgb(255,255,255)";
+    ctx.beginPath();
+    ctx.moveTo(clockCenterX, clockCenterY);
+    ctx.lineTo(clockCenterX - 2*newHourHandXPosition, clockCenterY - 2*newHourHandYPosition);
+    ctx.stroke();
+}
+
+function addCircleWithParameters() {
+
+}
+
+function addLineWithParameters() {
+
 }
 
 function convertDegreeToRadian(angleInDegree) {
