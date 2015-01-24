@@ -8,6 +8,8 @@ var clockComponentsAlpha = 1.0;
 var hourHandRadius, minuteHandRadius, secondHandRadius;
 var canvas;
 var toDrawClockLines = true;
+var defaultWhiteColor = 'rgb(255,255,255)';
+var defaultLeafGreen = 'rgb(0,0,0)';
 var defaultClockHandColor = "rgb(255,255,255)";
 var circleAngleMultiplier = 2;
 var isDefaultColorModel = true;
@@ -21,15 +23,33 @@ function resetCanvasView() {
     canvas.width = winMin;
     canvas.height = winMin*0.65;
     ctx = canvas.getContext('2d');
+
     //Screen if using RGB model
     ctx.globalCompositeOperation = colorModelsMetadata[colorModel].composition;
-
+    addLegendsOnClock();
     //Create a dot at the center of circle
+    addCircleWithParameters(defaultWhiteColor, (canvas.width/2), (canvas.height/2), 5);
 
-    addCircleWithParameters('rgb(255,255,255)', (canvas.width/2), (canvas.height/2), 5);
+
 
     //Create big circle centered on the screen
-    addOuterCircle("rgb(255,255,255)","rgba(0,0,0,0)",radiusOfClock, clockCenterX, clockCenterY);
+    addOuterCircle(defaultWhiteColor,"rgba(0,0,0,0)",radiusOfClock, clockCenterX, clockCenterY);
+    
+    //Add dots for indicating numbers on clock
+}
+
+function addLegendsOnClock() {
+    //Top
+    addCircleWithParameters(defaultLeafGreen, clockCenterX, clockCenterY - radiusOfClock + 5, 5);
+    
+    //Right
+    addCircleWithParameters(defaultLeafGreen, clockCenterX + radiusOfClock - 5, clockCenterY, 5);
+    
+    //Bottom
+    addCircleWithParameters(defaultLeafGreen, clockCenterX, clockCenterY + radiusOfClock - 5,5);
+    
+    //Left
+    addCircleWithParameters(defaultLeafGreen, clockCenterX - radiusOfClock + 5, clockCenterY, 5);
 }
 
 function addOuterCircle(strokeColor, fillColor, radius, centerX, centerY) {
@@ -97,6 +117,8 @@ function updateSecondHand(timeArray) {
     //Magenta
     addCircleWithParameters('rgb'+colorModelsMetadata[colorModel].third, (clockCenterX - newHourHandXPosition), (clockCenterY - newHourHandYPosition), hourHandRadius);
 
+    
+    
     if(toDrawClockLines == true) {
         //Draw line on second hand to indicate its position
         addLineWithParameters(defaultClockHandColor, (clockCenterX - newSecondHandXPosition*2), (clockCenterY - newSecondHandYPosition*2));
@@ -104,6 +126,7 @@ function updateSecondHand(timeArray) {
         addLineWithParameters(defaultClockHandColor,(clockCenterX - 2*newHourHandXPosition), (clockCenterY - 2*newHourHandYPosition));
     }
 }
+
 
 function addCircleWithParameters(circleColor, xCenterValue, yCenterValue, radius) {
     ctx.fillStyle = circleColor
@@ -138,12 +161,16 @@ $(document).ready(function() {
     $("#color-scheme-adjust-button" ).click(function() {
         isDefaultColorModel = !isDefaultColorModel;
 
+
+
         if(isDefaultColorModel) {
             colorModel = "RGB";
+            defaultClockHandColor = defaultWhiteColor;
             $(this).html("Change to CMY Model");
         }
         else {
             colorModel = "CMY";
+            defaultClockHandColor = "rgb(0, 0, 0)";
             $(this).html("Change to RGB Model");
         }
 
