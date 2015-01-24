@@ -65,7 +65,8 @@ function getIndividualTimeParameters(timeString) {
     //Execute following function only if hour has changed
     if(secondsFirstPart != oldSecondsFirstPart || secondsSecondPart != oldSecondsSecondPart) {
         resetAllBullets([17,24]);
-        updateSecondHand(timeStringArrayRepresentation);
+        updateTime(timeStringArrayRepresentation);
+        //updateTimeForBezierCurve(timeStringArrayRepresentation);
         setBitsHolder = setBitsHolder.concat(getSetBits(secondsFirstPart, 4));
         setBitsHolder = setBitsHolder.concat(getSetBits(secondsSecondPart, 5));
         oldSecondsFirstPart = secondsFirstPart;

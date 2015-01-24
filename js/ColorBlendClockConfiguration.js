@@ -81,10 +81,10 @@ function setupCanvasView() {
 
 function drawCanvasElements() {
     var emptyTimeValueArray = [0, 0, 0];
-    updateSecondHand(emptyTimeValueArray);
+    updateTime(emptyTimeValueArray);
 }
 
-function updateSecondHand(timeArray) {
+function updateTime(timeArray) {
 
     resetCanvasView();
     var secondHandAngle = 6*timeArray[2];
