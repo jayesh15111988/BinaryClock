@@ -5,11 +5,13 @@
 // Change registerEvents to true if we want user to interact with graph
 // This Bezier curve is the courtesy of graph library http://jsxgraph.uni-bayreuth.de/wp/
 
-var p = [], l = [], m = [];
+
+var brd = JXG.JSXGraph.initBoard('jxgbox',{boundingbox:[-10, 100, 100, -10],keepaspectratio: false, axis: true, registerEvents: false});
 
 function updateBezierCurveWithSplitTime(hoursFirstPart, hoursSecondPart, minutesFirstPart, minutesSecondPart, secondsFirstPart, secondsSecondPart) {
 
-    var brd = JXG.JSXGraph.initBoard('jxgbox',{boundingbox:[-10, 100, 100, -10],keepaspectratio: false, axis: true, registerEvents: false});
+    JXG.JSXGraph.freeBoard(brd);
+    brd = JXG.JSXGraph.initBoard('jxgbox',{boundingbox:[-10, 100, 100, -10],keepaspectratio: false, axis: true, registerEvents: false});
     var p = [], l = [], m= [];
 
     brd.suspendUpdate();
