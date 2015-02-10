@@ -28,25 +28,21 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="#">Innovative Clocks</a>
+                <a class="navbar-brand" href="#">Innovative Clocks - Hover to make clock active</a>
             </div>
         </div>
     </div>
 
     <!-- Begin page content -->
     <div class="center-container">
-        <div class="center-row">
-            <div class="col-xs-6 bg-one text-center" id="clock-one">
-
-                    <div id="clock-one-title"><h2>Regular Clock</h2></div>
-
-                <div class="sub-header">
-                    <div class="regular-clock">
-                        <!--<div id="date">
-                        </div> -->
-                        <div id="time">
-                        </div>
-                    </div>
+        <div class="center-row" id="first-row">
+            <div class="col-xs-6 bg-three text-center" id="clock-nine">
+                <div id="clock-nine-title"><h2>Color Gradient Clock</h2></div>
+                <div id="color-blend-clock">
+                    <button id="color-scheme-adjust-button">Change to CMY Model</button>
+                    <button id="shape-changer">Change Circle Shape</button>
+                    <button id="hand-drawer">Show Hide hand lines</button>
+                    <canvas id="color-gradient-canvas"></canvas>
                 </div>
             </div>
             <div class="col-xs-6 bg-two text-center" id="clock-two">
@@ -61,7 +57,7 @@
                 </div>
             </div>
         </div>
-        <div class="center-row">
+        <div class="center-row" id="second-row">
             <div class="col-xs-6 bg-three text-center" id="clock-three">
 
                     <div id="clock-three-title"><h2>Bar Chart Clock</h2></div>
@@ -108,7 +104,7 @@
         </div>
 
         <!-- Last row for clock experiment -->
-        <div class="center-row">
+        <div class="center-row" id="fourth-row">
             <div class="col-xs-6 bg-seven text-center" id="clock-seven">
 
                     <div id="clock-seven-title"><h2>Periodic Elements Clock</h2></div>
@@ -207,21 +203,19 @@
             </div>
         </div>
         <!-- End of last row for clock experiment -->
-        <div class="center-row">
-            <div class="col-xs-6 bg-three text-center" id="clock-nine">
+        <div class="center-row" id="fifth-row">
+            <div class="col-xs-6 bg-one text-center" id="clock-one">
 
-                    <div id="clock-nine-title"><h2>Color Gradient Clock</h2></div>
+                <div id="clock-one-title"><h2>Regular Clock</h2></div>
 
-
-                <div id="color-blend-clock">
-                <button id="color-scheme-adjust-button">Change to CMY Model</button>
-                <button id="shape-changer">Change Circle Shape</button>
-                <button id="hand-drawer">Show Hide hand lines</button>
-                  <canvas id="color-gradient-canvas"></canvas>
-
+                <div class="sub-header">
+                    <div class="regular-clock">
+                        <!--<div id="date">
+                        </div> -->
+                        <div id="time">
+                        </div>
+                    </div>
                 </div>
-
-
             </div>
             <div class="col-xs-6 bg-four text-center" id="clock-ten">
 

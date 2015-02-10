@@ -44,8 +44,22 @@ function createBinaryClockBulletDivs() {
         var elementToAppend = $("<div></div>").addClass("time-indicator").text(timeKeyValues[timeKeyValueIndex]);
         clockFooter.append(elementToAppend);
     }
-
 }
+
+$(document).ready(function() {
+
+//First on load set opacity of all elements to 0.2 for convenience
+$('#first-row, #second-row, #color-clock, #fourth-row, #fifth-row').css('opacity', 0.2);
+
+// when hover over the selected image change the opacity between 0.2 and 1
+    $('#first-row, #second-row, #color-clock, #fourth-row, #fifth-row').hover(
+        function(){
+            $(this).fadeTo('fast', 1);
+        },
+        function(){
+            $(this).fadeTo('fast', 0.2);
+        });
+});
 
 
 createBinaryClockBulletDivs();
